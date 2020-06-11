@@ -106,7 +106,7 @@ class ProxyServiceMiddleware(object):
             next_proxy = next(self.target_bucket[spider.ps_target])
         return next_proxy['id'], next_proxy['url']
 
-    def load_spider_bucket(self, spider, blocked: list=None):
+    def load_spider_bucket(self, spider, blocked: list = None):
         '''Load the bucket for the spider'''
         target = spider.ps_target
         should_load_proxies = any(
