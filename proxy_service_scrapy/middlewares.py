@@ -109,10 +109,7 @@ class ProxyServiceMiddleware(object):
     def load_spider_bucket(self, spider, blocked: list = None):
         '''Load the bucket for the spider'''
         target = spider.ps_target
-        should_load_proxies = any(
-            [(target not in self.target_bucket),
-             (blocked is not None),
-             (not self.target_bucket[target])])
+        should_load_proxies =  blocked is not None or not self.target_bucket.get(target)
         if should_load_proxies:
             filters = {}
             self.load_api_filters_spider(spider, filters)
