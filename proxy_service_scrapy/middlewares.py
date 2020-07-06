@@ -93,7 +93,8 @@ class ProxyServiceMiddleware(object):
         for f_key in filter_keys:
             f_val = getattr(spider, f_key, None)
             if f_val is not None:
-                filters[f_key] = f_val
+                # ie: ps_len => len
+                filters[f_key.split('_', 1)[-1]] = f_val
 
     def next_proxy(self, spider):
         '''Return the next proxy in the bucket
