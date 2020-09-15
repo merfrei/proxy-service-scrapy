@@ -177,7 +177,7 @@ class ProxyServiceMiddleware(object):
                 'proxy_id' in request.meta)
             if mark_as_blocked:
                 self.load_spider_bucket(
-                    spider, blocked=[int(request.meta['proxy_id'])])
+                    spider, blocked=[str(request.meta['proxy_id'])])
         return response
 
     def process_exception(self, request, exception, spider):
@@ -191,7 +191,7 @@ class ProxyServiceMiddleware(object):
                 'proxy_id' in request.meta)
             if mark_as_blocked:
                 self.load_spider_bucket(spider,
-                                        blocked=[int(request.meta['proxy_id'])])
+                                        blocked=[str(request.meta['proxy_id'])])
                 self.replace_proxy(request, spider)
                 request.dont_filter = True
                 return request
