@@ -166,6 +166,8 @@ class ProxyServiceMiddleware(object):
         '''If PS is enabled it will be used'''
         disabled = (request.meta.get('ps_disabled', False) or False)
         if (spider.name in self.use_proxies) and (not disabled):
+            if request.meta.get('ps_force', False):
+                self.load_spider_bucket(spider)
             self.replace_proxy(request, spider)
 
     def process_response(self, request, response, spider):
