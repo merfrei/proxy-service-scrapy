@@ -16,6 +16,7 @@ from twisted.internet.error import ConnectError
 from twisted.internet.error import ConnectionLost
 from twisted.internet.error import TCPTimedOutError
 from twisted.internet.defer import TimeoutError as UserTimeoutError
+from scrapy.core.downloader.handlers.http11 import TunnelError
 
 
 logger = logging.getLogger(__name__)
@@ -56,7 +57,7 @@ class ProxyServiceMiddleware(object):
         self.blocked_exceptions = (
             ServerTimeoutError, UserTimeoutError,
             ConnectionRefusedError, ConnectionDone, ConnectError,
-            ConnectionLost, TCPTimedOutError, IOError)
+            ConnectionLost, TCPTimedOutError, IOError, TunnelError)
 
     @classmethod
     def from_crawler(cls, crawler):
